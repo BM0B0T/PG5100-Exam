@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+<ui:composition template="/layout.xhtml">
+
+    <ui:define name="title">
+        home
+    </ui:define>
+
+
+    <ui:define name="content">
+        <h2>Home</h2>
+
+        <sec:authenticated>
+            <h3>you are loged inn</h3>
+        </sec:authenticated>
+
+
+        <sec:anonymous>
+            <h3>Log in</h3>
+        </sec:anonymous>
+
+    </ui:define>
+
+</ui:composition>
+</html>
