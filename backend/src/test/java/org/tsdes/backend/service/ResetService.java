@@ -1,5 +1,6 @@
 package org.tsdes.backend.service;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.tsdes.backend.entity.*;
@@ -8,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @Service
 @Transactional
 public class ResetService {

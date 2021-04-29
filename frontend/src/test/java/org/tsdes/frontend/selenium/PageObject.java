@@ -1,4 +1,4 @@
-package org.tsdes.intro.exercises.quizgame.selenium;
+package org.tsdes.frontend.selenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,18 +11,15 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 public abstract class PageObject {
 
+    private static final AtomicLong counter = new AtomicLong(System.currentTimeMillis());
     protected final WebDriver driver;
     protected final String host;
     protected final int port;
-
-    private static final AtomicLong counter = new AtomicLong(System.currentTimeMillis());
-
-    public static String getUniqueId() {
-        return "foo" + counter.incrementAndGet();
-    }
 
     public PageObject(WebDriver driver, String host, int port) {
         this.driver = driver;
@@ -32,6 +29,10 @@ public abstract class PageObject {
 
     public PageObject(PageObject other) {
         this(other.getDriver(), other.getHost(), other.getPort());
+    }
+
+    public static String getUniqueId() {
+        return "foo" + counter.incrementAndGet();
     }
 
     public abstract boolean isOnPage();
@@ -52,29 +53,35 @@ public abstract class PageObject {
         driver.get("http://" + host + ":" + port);
     }
 
-    public void refresh(){
+    public void refresh() {
         driver.navigate().refresh();
     }
 
-    public void clickAndWait(String id){
+    public void clickAndWait(String id) {
         WebElement element = driver.findElement(By.id(id));
         element.click();
-        try{Thread.sleep(200);} catch (Exception e){}
+        try{
+            Thread.sleep(200);
+        }catch(Exception e){
+        }
         waitForPageToLoad();
-        try{Thread.sleep(300);} catch (Exception e){}
+        try{
+            Thread.sleep(300);
+        }catch(Exception e){
+        }
     }
 
-    public String getText(String id){
+    public String getText(String id) {
         return driver.findElement(By.id(id)).getText();
     }
 
-    public int getInteger(String id){
+    public int getInteger(String id) {
         String text = getText(id);
 
         return Integer.parseInt(text);
     }
 
-    public void setText(String id, String text){
+    public void setText(String id, String text) {
         WebElement element = driver.findElement(By.id(id));
         element.clear();
         element.click();
@@ -89,7 +96,7 @@ public abstract class PageObject {
         WebDriverWait wait = new WebDriverWait(driver, 10); //give up after 10 seconds
 
         //keep executing the given JS till it returns "true", when page is fully loaded and ready
-        return wait.until((ExpectedCondition<Boolean>) input -> {
+        return wait.until((ExpectedCondition <Boolean>) input -> {
             String res = jsExecutor.executeScript("return /loaded|complete/.test(document.readyState);").toString();
             return Boolean.parseBoolean(res);
         });

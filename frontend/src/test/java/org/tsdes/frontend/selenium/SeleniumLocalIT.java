@@ -1,4 +1,4 @@
-package org.tsdes.intro.exercises.quizgame.selenium;
+package org.tsdes.frontend.selenium;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +13,9 @@ import org.tsdes.Application;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class, webEnvironment = RANDOM_PORT)

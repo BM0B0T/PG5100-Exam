@@ -1,11 +1,11 @@
-package org.tsdes.intro.exercises.quizgame.selenium;
+package org.tsdes.frontend.selenium;
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.tsdes.intro.exercises.quizgame.selenium.po.IndexPO;
-import org.tsdes.intro.exercises.quizgame.selenium.po.SignUpPO;
+import org.tsdes.frontend.selenium.po.IndexPO;
+import org.tsdes.frontend.selenium.po.SignUpPO;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

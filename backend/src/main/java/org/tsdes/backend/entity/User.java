@@ -4,7 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @Entity
 @Table(name="USERS")
 public class User {

@@ -1,4 +1,4 @@
-package org.tsdes.intro.exercises.quizgame;
+package org.tsdes.frontend;
 
 import org.springframework.boot.SpringApplication;
 import org.tsdes.Application;

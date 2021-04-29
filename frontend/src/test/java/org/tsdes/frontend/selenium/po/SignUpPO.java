@@ -1,10 +1,10 @@
-package org.tsdes.intro.exercises.quizgame.selenium.po;
+package org.tsdes.frontend.selenium.po;
 
 
-import org.tsdes.intro.exercises.quizgame.selenium.PageObject;
+import org.tsdes.frontend.selenium.PageObject;
 
 /**
- * Created by arcuri82 on 12-Feb-18.
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
  */
 public class SignUpPO extends LayoutPO{
 

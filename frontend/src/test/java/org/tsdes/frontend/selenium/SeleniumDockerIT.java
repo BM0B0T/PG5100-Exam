@@ -1,4 +1,4 @@
-package org.tsdes.intro.exercises.quizgame.selenium;
+package org.tsdes.frontend.selenium;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,13 +22,16 @@ import org.tsdes.Application;
 
 import java.nio.file.Paths;
 
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @ContextConfiguration(initializers = SeleniumDockerIT.DockerInitializer.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class SeleniumDockerIT extends SeleniumTestBase {
 
-    private static String QUIZ_HOST_ALIAS = "quizgame-host";
-    private static String PG_ALIAS = "postgresql-host";
+    private static final String QUIZ_HOST_ALIAS = "frontend-host";
+    private static final String PG_ALIAS = "postgresql-host";
 
     public static Network network = Network.newNetwork();
 

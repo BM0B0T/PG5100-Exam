@@ -6,7 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @Named
 @RequestScoped
 public class UserInfoController {

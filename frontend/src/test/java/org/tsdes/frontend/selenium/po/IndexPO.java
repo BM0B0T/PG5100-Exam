@@ -1,7 +1,7 @@
-package org.tsdes.intro.exercises.quizgame.selenium.po;
+package org.tsdes.frontend.selenium.po;
 
 import org.openqa.selenium.WebDriver;
-import org.tsdes.intro.exercises.quizgame.selenium.PageObject;
+import org.tsdes.frontend.selenium.PageObject;
 
 
 public class IndexPO extends LayoutPO {

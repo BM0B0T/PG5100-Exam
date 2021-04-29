@@ -11,6 +11,9 @@ import org.tsdes.backend.service.UserService;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @Named
 @RequestScoped
 public class SignUpController {
@@ -36,7 +39,6 @@ public class SignUpController {
         }
 
         if(registered){
-
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     userDetails,

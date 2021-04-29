@@ -1,12 +1,14 @@
-package org.tsdes.intro.exercises.quizgame.selenium.po;
+package org.tsdes.frontend.selenium.po;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.tsdes.intro.exercises.quizgame.selenium.PageObject;
+import org.tsdes.frontend.selenium.PageObject;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 public abstract class LayoutPO extends PageObject {
 
     public LayoutPO(WebDriver driver, String host, int port) {

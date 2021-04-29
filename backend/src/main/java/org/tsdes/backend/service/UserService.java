@@ -8,7 +8,9 @@ import org.tsdes.backend.entity.User;
 
 import javax.persistence.EntityManager;
 import java.util.Collections;
-
+/**
+ * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
+ */
 @Service
 @Transactional
 public class UserService {
