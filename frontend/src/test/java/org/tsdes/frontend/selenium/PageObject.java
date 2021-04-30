@@ -62,12 +62,12 @@ public abstract class PageObject {
         element.click();
         try{
             Thread.sleep(200);
-        }catch(Exception e){
+        }catch(Exception ignored){
         }
         waitForPageToLoad();
         try{
             Thread.sleep(300);
-        }catch(Exception e){
+        }catch(Exception ignored){
         }
     }
 
