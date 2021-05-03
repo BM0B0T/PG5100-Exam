@@ -44,6 +44,7 @@ public class MovieServiceTest extends ServiceTestBase {
     void addMovieAndDeleteTest() {
         assertTrue(movieService.createMovie("Deadpool", "Tim Miller", Date.valueOf("2016-02-12")));
         assertTrue(movieService.deleteMovie("Deadpool"));
+        assertFalse(movieService.deleteMovie("Deadpool"));
     }
 
     @Test

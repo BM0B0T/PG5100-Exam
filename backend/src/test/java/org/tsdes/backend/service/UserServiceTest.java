@@ -36,5 +36,11 @@ public class UserServiceTest extends ServiceTestBase {
         assertTrue(userService.createUser("user@gmail.com", "password", "test", "test"));
         assertFalse(userService.createUser("user@gmail.com", "password1", "test1", "test2"));
     }
+    @Test
+    @DisplayName("password length")
+    void passwordLength() {
+        assertFalse(userService.createUser("user@gmail.com", "p", "test1", "test2"));
+    }
+
 
 }
