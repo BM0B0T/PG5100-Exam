@@ -4,9 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
@@ -17,19 +16,18 @@ public class User {
 
     @Id
     @NotBlank
+    @Size(min = 1, max = 1024)
     @Email
     private String username;
 
     @NotBlank
     private String password;
 
-    @Max(32)
-    @Min(2)
+    @Size(min = 1, max = 1024)
     @NotBlank
     private String firstName;
 
-    @Max(32)
-    @Min(2)
+    @Size(min = 1, max = 1024)
     @NotBlank
     private String LastName;
 

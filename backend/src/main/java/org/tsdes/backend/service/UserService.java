@@ -21,10 +21,13 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createUser(String username, String password,String firstName,String lastName) {
+    public boolean createUser(String username, String password, String firstName, String lastName) {
         String hashedPassword = passwordEncoder.encode(password);
         if(em.find(User.class, username) != null)
             return false;
+        if(password.length() <= 6)
+            return false;
+
         User user = new User();
         user.setUsername(username);
         user.setPassword(hashedPassword);

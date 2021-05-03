@@ -3,27 +3,28 @@ package org.tsdes.backend.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.sql.Date;
+
 
 @Entity
 @Table(name = "MOVIES")
 public class Movie {
 
-    @Max(32)
+    @Size(min = 1, max = 1024)
     @Id
     @NotBlank
     private String title;
 
-    @Max(64)
-    @Min(4)
+    @Size(min = 1, max = 1024)
     @NotBlank
     private String director;
 
     @NotNull
-    private int yearOfRelease;
+    private Date yearOfRelease;
+
 
     public String getTitle() {
         return title;
@@ -41,11 +42,11 @@ public class Movie {
         this.director = director;
     }
 
-    public int getYearOfRelease() {
+    public Date getYearOfRelease() {
         return yearOfRelease;
     }
 
-    public void setYearOfRelease(int yearOfRelease) {
+    public void setYearOfRelease(Date yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
     }
 }

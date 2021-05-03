@@ -1,10 +1,7 @@
 package org.tsdes.backend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -15,14 +12,14 @@ public class Review {
     @GeneratedValue(generator = "review_id_sequence")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Movie targetMovie;
 
-    @Max(100)
+    @Size(min = 1, max = 4096)
     @NotBlank
     private String ReviewText;
 
-    @OneToOne
+    @ManyToOne
     private User Author;
 
     @Min(1)

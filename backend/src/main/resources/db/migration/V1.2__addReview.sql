@@ -2,16 +2,17 @@ CREATE SEQUENCE review_id_sequence START WITH 1 INCREMENT BY 1;
 
 CREATE TABLE reviews
 (
-    id           BIGINT    NOT NULL,
-    review_text  VARCHAR(255) CHECK (review_text <= 100),
-    rating       INTEGER   NOT NULL CHECK (rating <= 5 AND rating >= 1),
-    timestamp    TIMESTAMP NOT NULL,
-    author_email VARCHAR(255),
-    movie_title  VARCHAR(255),
-    PRIMARY KEY (id)
+    id                 bigint    not null,
+    review_text        varchar(4096),
+    rating             integer   not null check (rating <= 5 AND rating >= 1),
+    timestamp          timestamp not null,
+    author_username    varchar(255),
+    target_movie_title varchar(255),
+    primary key (id)
 );
 
+
 ALTER TABLE reviews
-    ADD CONSTRAINT email_constraint FOREIGN KEY (author_email) REFERENCES users;
+    ADD CONSTRAINT email_constraint FOREIGN KEY (author_username) REFERENCES users;
 ALTER TABLE reviews
-    ADD CONSTRAINT movie_title_constraint FOREIGN KEY (movie_title) REFERENCES movies;
+    ADD CONSTRAINT movie_title_constraint FOREIGN KEY (target_movie_title) REFERENCES movies;
