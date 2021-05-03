@@ -13,7 +13,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <link rel="stylesheet" href="/assets/style.css"/>
+    <link rel="stylesheet" href="./assets/style.css"/>
 
 
     <title>
@@ -30,14 +30,14 @@
         <p><h:outputText value="Welcome home#{userInfoController.userName}"/></p>
 
 
-        <a id="logoutId" href="logout" class="btn">Log Out</a>
+        <a id="logoutId" href="logout?faces-redirect=true" class="btn">Log Out</a>
     </sec:authenticated>
 
 
     <sec:anonymous>
         <p>You are not logged in</p>
-        <a id="linkToLoginId" href="login.jsf" class="btn">Log In</a>
-        <a id="linkToSignupId" href="signup.jsf" class="btn" >Sign Up</a>
+        <a id="linkToLoginId" href="login.jsf?faces-redirect=true" class="btn">Log In</a>
+        <a id="linkToSignupId" href="signup.jsf?faces-redirect=true" class="btn" >Sign Up</a>
     </sec:anonymous>
 
     <hr/>
