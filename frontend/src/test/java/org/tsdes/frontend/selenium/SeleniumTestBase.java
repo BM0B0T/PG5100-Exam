@@ -24,7 +24,7 @@ public abstract class SeleniumTestBase {
     protected abstract int getServerPort();
 
     private String getUniqueId() {
-        return "foo_SeleniumLocalIT_" + counter.getAndIncrement();
+        return "SeleniumLocalIT_" + counter.getAndIncrement();
     }
 
     private IndexPO createNewUser(String username, String password) {
@@ -62,5 +62,21 @@ public abstract class SeleniumTestBase {
         home.doLogout();
         assertFalse(home.isLoggedIn());
         assertFalse(home.getDriver().getPageSource().contains(username));
+    }
+    @Test
+    public void testCantCreateSameUserOnSameUsername() {
+        assertFalse(home.isLoggedIn());
+        String username = getUniqueId();
+        String password = "test";
+        home = createNewUser(username, password);
+        assertTrue(home.isLoggedIn());
+        assertTrue(home.getDriver().getPageSource().contains(username));
+        home.doLogout();
+        assertFalse(home.isLoggedIn());
+        assertFalse(home.getDriver().getPageSource().contains(username));
+        home.toStartingPage();
+        SignUpPO signUpPO = home.toSignUp();
+        signUpPO.createUser(username, password);
+        assertTrue(signUpPO.isOnPage());
     }
 }
