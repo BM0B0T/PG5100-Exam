@@ -42,8 +42,9 @@ public class MovieService {
     public List <Movie> getAllMoviesByAvgRating() {
         List <Movie> movies = em.createQuery("SELECT m FROM Movie m", Movie.class).getResultList();
         return movies.stream()
-                .sorted(Comparator.comparing(m -> reviewService.averageRating((Movie) m)))
+                .sorted(Comparator.comparing(m -> reviewService.averageRating(m)))
                 .collect(Collectors.toList());
+
     }
 
     public Movie getMovieByTitle(String title) {
