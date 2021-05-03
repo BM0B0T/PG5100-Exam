@@ -7,10 +7,33 @@
 >
 <ui:composition template="/layout.xhtml">
 
-    <ui:define name="title">Home</ui:define>
+    <ui:define name="title">Movie</ui:define>
 
     <ui:define name="content">
-        <h:outputText value="${param['movie']}"/>
+        <c:choose>
+            <c:when test="#{!indexController.movieSelected}">
+                No selected movie, you need to select one <a href="index.jsf?faces-redirect=true">Home</a>
+            </c:when>
+            <c:otherwise>
+                <c:set value="#{indexController.selectedMovie}" var="movie"/>
+                <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
+                <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
+                <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
+                <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
+                <br/>
+                <h4>Reviews:</h4>
+                <c:forEach var="review" items="#{indexController.allReviewsFromMovie}">
+                    <h5>Author: <h:outputText value="#{review.author.firstName} #{review.author.lastName}"/></h5>
+                    <p>Email: <h:outputText value="#{review.author.username}"/></p>
+                    <p>Rating: <h:outputText value="#{review.rating}"/></p>
+                    <p>Review: <h:outputText value="#{review.reviewText}"/></p>
+                    <p>Timestap: <h:outputText value="#{review.timestamp}"/></p>
+                    <br/>
+                </c:forEach>
+
+            </c:otherwise>
+        </c:choose>
+
     </ui:define>
 </ui:composition>
 

@@ -13,16 +13,15 @@
     <ui:define name="content">
 
         <c:forEach var="movie" items="#{indexController.movies}">
-                <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
-                <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
-                <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
-                <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
+
+            <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
+            <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
+            <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
+            <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
             <h:form prependId="false">
-                <h:commandButton
-                        value="Show more detail"
-                        action="#{indexController.setMovie(movie)}"
-                       />
+                <h:commandButton value="Show more detail" action="#{indexController.selectMovie(movie)}" class="btn"/>
             </h:form>
+
         </c:forEach>
 
     </ui:define>

@@ -2,6 +2,7 @@ package org.tsdes.frontend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.tsdes.backend.entity.Movie;
+import org.tsdes.backend.entity.Review;
 import org.tsdes.backend.service.MovieService;
 import org.tsdes.backend.service.ReviewService;
 
@@ -27,18 +28,24 @@ public class indexController {
         return movies;
     }
 
-    public String setMovie(Movie movie) {
-        selectedMovie = movie;
-        return "/ui/movie.jsf?movie="+movie.getTitle()+"&faces-redirect=true";
+    public boolean isMovieSelected() {
+        return selectedMovie != null;
     }
 
-    public Movie getMovie() {
+    public String selectMovie(Movie movie) {
+        selectedMovie = movie;
+        return "/ui/movie.jsf";
+    }
+
+    public Movie getSelectedMovie() {
         return selectedMovie;
     }
-
 
     public String avgRating(Movie movie) {
         return String.format("%.2f", reviewService.averageRating(movie));
     }
 
+    public List <Review> getAllReviewsFromMovie() {
+        return reviewService.getAllReviewByMovie(selectedMovie);
+    }
 }
