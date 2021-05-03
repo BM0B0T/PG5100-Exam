@@ -12,7 +12,6 @@ import javax.persistence.Query;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Queue;
 
 @Service
 @Transactional
@@ -37,10 +36,13 @@ public class ReviewService {
         return review;
     }
 
-    public int averageRating(Movie movie) {
-        Query q = em.createQuery("select avg(r.rating) from Review r where r.targetMovie = ?1");
+    public double averageRating(Movie movie) {
+        Query q = em.createQuery("SELECT AVG(r.rating) FROM Review r WHERE r.targetMovie = ?1");
         q.setParameter(1, movie);
-        return q.getFirstResult();
+        Double res = (Double) q.getSingleResult();
+        if(res == null)
+            return 0.0;
+        return res;
     }
 
     public List <Review> getAllReviewByMovie(Movie movie) {

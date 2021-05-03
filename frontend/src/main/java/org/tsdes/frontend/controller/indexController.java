@@ -37,8 +37,8 @@ public class indexController {
     }
 
 
-    public int avgRating(Movie movie) {
-        return reviewService.averageRating(movie);
+    public String avgRating(Movie movie) {
+        return String.format("%.2f", reviewService.averageRating(movie));
     }
 
 }
