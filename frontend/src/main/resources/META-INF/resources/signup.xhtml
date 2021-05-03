@@ -19,8 +19,8 @@
                 <h:outputLabel value="User and/or password are wrong."
                                rendered="${!empty param['error']}"/>
 
-                <h:outputText value="Username: "/>
-                <h:inputText id="username" value="#{signUpController.username}" class="login"/><br/>
+                <h:outputText value="Email: "/>
+                <h:inputText id="username" value="#{signUpController.email}" class="login"/><br/>
                 <h:outputText value="Password: "/>
                 <h:inputSecret id="password" value="#{signUpController.password}" class="login"/><br/>
 

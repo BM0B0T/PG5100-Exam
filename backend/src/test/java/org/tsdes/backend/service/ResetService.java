@@ -2,7 +2,7 @@ package org.tsdes.backend.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.tsdes.backend.auth.UserEntity;
+import org.tsdes.backend.entity.User;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -20,7 +20,7 @@ public class ResetService {
     private EntityManager em;
 
     public void resetDatabase() {
-        deleteEntities(UserEntity.class);
+        deleteEntities(User.class);
     }
 
     private void deleteEntities(Class <?> entity) {

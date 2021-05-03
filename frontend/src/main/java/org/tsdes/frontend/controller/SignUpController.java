@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.tsdes.backend.auth.UserService;
+import org.tsdes.backend.service.UserService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -27,19 +27,19 @@ public class SignUpController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private String username;
+    private String email;
     private String password;
 
     public String signUpUser() {
 
         boolean registered = false;
         try{
-            registered = userService.createUser(username, password);
+            registered = userService.createUser(email, password);
         }catch(Exception ignored){
         }
 
         if(registered){
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     userDetails,
                     password,
@@ -54,12 +54,12 @@ public class SignUpController {
         }else return "/signup.jsf?faces-redirect=true&error=true";
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

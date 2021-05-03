@@ -1,9 +1,10 @@
-package org.tsdes.backend.auth;
+package org.tsdes.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.tsdes.backend.entity.User;
 
 import javax.persistence.EntityManager;
 
@@ -20,12 +21,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createUser(String username, String password) {
+    public boolean createUser(String email, String password) {
         String hashedPassword = passwordEncoder.encode(password);
-        if(em.find(UserEntity.class, username) != null)
+        if(em.find(User.class, email) != null)
             return false;
-        UserEntity user = new UserEntity();
-        user.setUsername(username);
+        User user = new User();
+        user.setEmail(email);
         user.setPassword(hashedPassword);
         em.persist(user);
         return true;
