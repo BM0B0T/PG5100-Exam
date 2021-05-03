@@ -22,9 +22,9 @@ public class UserService {
 
     public boolean createUser(String username, String password) {
         String hashedPassword = passwordEncoder.encode(password);
-        if(em.find(User.class, username) != null)
+        if(em.find(UserEntity.class, username) != null)
             return false;
-        User user = new User();
+        UserEntity user = new UserEntity();
         user.setUsername(username);
         user.setPassword(hashedPassword);
         em.persist(user);
