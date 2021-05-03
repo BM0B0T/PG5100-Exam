@@ -10,6 +10,8 @@ import org.tsdes.backend.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,20 +20,21 @@ public class ReviewService {
     @Autowired
     private EntityManager em;
 
-    public boolean addReview(String title, String reviewText, int rating, String author) {
+    public Review addReview(String title, String reviewText, int rating, String author) {
         Movie movie = em.find(Movie.class, title);
         if(movie == null)
-            return false;
+            return null;
         User user = em.find(User.class, author);
         if(user == null)
-            return false;
+            return null;
         Review review = new Review();
         review.setTargetMovie(movie);
         review.setReviewText(reviewText);
         review.setRating(rating);
         review.setAuthor(user);
+        review.setTimestamp(Timestamp.valueOf(LocalDateTime.now()));
         em.persist(review);
-        return true;
+        return review;
     }
 
     public Double averageRating(Movie movie) {

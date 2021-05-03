@@ -77,6 +77,4 @@ public class Review {
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-
-
 }
