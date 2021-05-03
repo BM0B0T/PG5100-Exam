@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.tsdes.backend.service.UserService;
+import org.tsdes.backend.auth.UserService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -35,7 +35,7 @@ public class SignUpController {
         boolean registered = false;
         try{
             registered = userService.createUser(username, password);
-        }catch(Exception e){//
+        }catch(Exception ignored){
         }
 
         if(registered){

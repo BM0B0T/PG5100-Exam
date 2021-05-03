@@ -1,14 +1,15 @@
-package org.tsdes.backend.entity;
+package org.tsdes.backend.auth;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
+
 /**
  * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
  */
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
     @Id
     @NotBlank
@@ -16,12 +17,6 @@ public class User {
 
     @NotBlank
     private String password;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles;
-
-    @NotNull
-    private Boolean enabled;
 
     public String getUsername() {
         return username;
@@ -37,21 +32,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 }

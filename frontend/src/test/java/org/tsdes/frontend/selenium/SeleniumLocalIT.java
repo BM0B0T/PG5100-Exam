@@ -37,7 +37,7 @@ public class SeleniumLocalIT extends SeleniumTestBase {
 
     @AfterAll
     public static void tearDown() {
-        if (driver != null) {
+        if(driver != null){
             driver.close();
         }
     }

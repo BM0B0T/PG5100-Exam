@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 /**
  * Primarily adapted from https://github.com/arcuri82/testing_security_development_enterprise_systems/
  */
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,19 +29,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception{
+    public UserDetailsService userDetailsServiceBean() throws Exception {
         return super.userDetailsServiceBean();
     }
 
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(HttpSecurity http) {
-        try {
+        try{
             http.csrf().disable();
             http.authorizeRequests()
                     .antMatchers("/", "/index.jsf", "/signup.jsf", "/assets/**").permitAll()
@@ -56,28 +57,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .logout()
                     .logoutSuccessUrl("/index.jsf");
-        } catch (Exception ex) {
+        }catch(Exception ex){
             throw new RuntimeException(ex);
         }
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
-        try {
+        try{
             auth.jdbcAuthentication()
                     .dataSource(dataSource)
                     .usersByUsernameQuery(
-                            "SELECT username, password, enabled " +
+                            "SELECT username, password, TRUE AS enabled " +
                                     "FROM users " +
                                     "WHERE username = ?"
                     )
                     .authoritiesByUsernameQuery(
-                            "SELECT x.username, y.roles " +
-                                    "FROM users x, user_roles y " +
-                                    "WHERE x.username = ? and y.user_username = x.username "
+                            "SELECT x.username, 'USER' AS roles " +
+                                    "FROM users x " +
+                                    "WHERE x.username = ? "
                     )
                     .passwordEncoder(passwordEncoder);
-        } catch (Exception e) {
+        }catch(Exception e){
             throw new RuntimeException(e);
         }
     }
