@@ -22,8 +22,8 @@ public class ResetService {
     private EntityManager em;
 
     public void resetDatabase() {
-        deleteEntities(User.class);
         deleteEntities(Review.class);
+        deleteEntities(User.class);
         deleteEntities(Movie.class);
     }
 

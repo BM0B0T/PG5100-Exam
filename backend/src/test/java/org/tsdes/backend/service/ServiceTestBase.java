@@ -11,7 +11,7 @@ public class ServiceTestBase {
     private ResetService deleteService;
 
     @BeforeEach
-    public void cleanDatabase(){
+    public void cleanDatabase() {
         deleteService.resetDatabase();
     }
 }

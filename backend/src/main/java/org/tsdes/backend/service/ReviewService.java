@@ -9,7 +9,6 @@ import org.tsdes.backend.entity.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,8 +19,8 @@ public class ReviewService {
     @Autowired
     private EntityManager em;
 
-    public Review addReview(String title, String reviewText, int rating, String author) {
-        Movie movie = em.find(Movie.class, title);
+    public Review addReview(String movieTitle, String reviewText, int rating, String author) {
+        Movie movie = em.find(Movie.class, movieTitle);
         if(movie == null)
             return null;
         User user = em.find(User.class, author);
@@ -43,7 +42,7 @@ public class ReviewService {
         return sum / reviews.size();
     }
 
-    public List <Review> getAllReviewByMovie(@NotNull Movie movie) {
+    public List <Review> getAllReviewByMovie(Movie movie) {
         Query q = em.createQuery("SELECT r FROM Review r WHERE r.targetMovie = ?1", Review.class);
         q.setParameter(1, movie);
         return q.getResultList();

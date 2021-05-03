@@ -12,7 +12,6 @@ import org.tsdes.backend.entity.Movie;
 import java.sql.Date;
 import java.util.List;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
@@ -81,6 +80,8 @@ public class MovieServiceTest extends ServiceTestBase {
         assertNotNull(reviewService.addReview("Deadpool", "its funny", 5, "user@gmail.com"));
         Movie movie = movieService.getMovieByTitle("Deadpool");
         List <Movie> movieList = movieService.getAllMoviesByAvgRating();
-        assertEquals(movie.getTitle(),movieList.get(0).getTitle());
+        assertEquals(movie.getTitle(), movieList.get(0).getTitle());
+        assertEquals(movie.getDirector(), movieList.get(0).getDirector());
+        assertEquals(movie.getYearOfRelease(), movieList.get(0).getYearOfRelease());
     }
 }
