@@ -1,10 +1,9 @@
 package org.tsdes.backend.entity;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -18,9 +17,8 @@ public class User {
 
     @Id
     @NotBlank
-    @Max(32)
-    @Min(3)
-    private String email;
+    @Email
+    private String username;
 
     @NotBlank
     private String password;
@@ -36,12 +34,12 @@ public class User {
     private String LastName;
 
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String username) {
-        this.email = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

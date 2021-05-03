@@ -27,19 +27,21 @@ public class SignUpController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private String email;
+    private String username;
     private String password;
+    private String firstName;
+    private String lastName;
 
     public String signUpUser() {
 
         boolean registered = false;
         try{
-            registered = userService.createUser(email, password);
+            registered = userService.createUser(username, password, firstName, lastName);
         }catch(Exception ignored){
         }
 
         if(registered){
-            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                     userDetails,
                     password,
@@ -54,12 +56,12 @@ public class SignUpController {
         }else return "/signup.jsf?faces-redirect=true&error=true";
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -68,5 +70,21 @@ public class SignUpController {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

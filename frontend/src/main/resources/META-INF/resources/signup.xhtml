@@ -13,16 +13,20 @@
 
 
     <ui:define name="content">
-            <h2>sign up</h2>
+        <h2>sign up</h2>
         <h:form prependId="false">
             <div>
                 <h:outputLabel value="User and/or password are wrong."
                                rendered="${!empty param['error']}"/>
 
                 <h:outputText value="Email: "/>
-                <h:inputText id="username" value="#{signUpController.email}" class="login"/><br/>
+                <h:inputText id="username" value="#{signUpController.username}" class="login"/><br/>
                 <h:outputText value="Password: "/>
                 <h:inputSecret id="password" value="#{signUpController.password}" class="login"/><br/>
+                <h:outputText value="FirstName: "/>
+                <h:inputSecret id="firstName" value="#{signUpController.firstName}" class="login"/><br/>
+                <h:outputText value="LastName: "/>
+                <h:inputSecret id="lastName" value="#{signUpController.lastName}" class="login"/><br/>
 
                 <h:commandButton id="submit" value="Sign Up" action="#{signUpController.signUpUser}" class="gameBtn"/>
             </div>

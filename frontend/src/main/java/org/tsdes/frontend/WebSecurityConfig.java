@@ -68,14 +68,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             auth.jdbcAuthentication()
                     .dataSource(dataSource)
                     .usersByUsernameQuery(
-                            "SELECT email, password, TRUE AS enabled " +
+                            "SELECT username, password, TRUE AS enabled " +
                                     "FROM users " +
-                                    "WHERE email = ?"
+                                    "WHERE username = ?"
                     )
                     .authoritiesByUsernameQuery(
-                            "SELECT x.email, 'USER' AS roles " +
+                            "SELECT x.username, 'USER' AS roles " +
                                     "FROM users x " +
-                                    "WHERE x.email = ? "
+                                    "WHERE x.username = ? "
                     )
                     .passwordEncoder(passwordEncoder);
         }catch(Exception e){
