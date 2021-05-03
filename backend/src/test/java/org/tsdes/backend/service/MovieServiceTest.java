@@ -40,10 +40,11 @@ public class MovieServiceTest extends ServiceTestBase {
     }
 
     @Test
-    @DisplayName("add movie and delete test")
-    void addMovieAndDeleteTest() {
+    @DisplayName("add and delete movie test")
+    void addAndDeleteMovieTest() {
         assertTrue(movieService.createMovie("Deadpool", "Tim Miller", Date.valueOf("2016-02-12")));
         assertTrue(movieService.deleteMovie("Deadpool"));
+        assertFalse(movieService.deleteMovie("Deadpool"));
     }
 
     @Test
@@ -78,8 +79,10 @@ public class MovieServiceTest extends ServiceTestBase {
         assertTrue(movieService.createMovie("Deadpool", "Tim Miller", Date.valueOf("2016-02-12")));
         assertTrue(userService.createUser("user@gmail.com", "password1", "test", "tests"));
         assertNotNull(reviewService.addReview("Deadpool", "its funny", 5, "user@gmail.com"));
+
         Movie movie = movieService.getMovieByTitle("Deadpool");
         List <Movie> movieList = movieService.getAllMoviesByAvgRating();
+
         assertEquals(movie.getTitle(), movieList.get(0).getTitle());
         assertEquals(movie.getDirector(), movieList.get(0).getDirector());
         assertEquals(movie.getYearOfRelease(), movieList.get(0).getYearOfRelease());

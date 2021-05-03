@@ -78,6 +78,8 @@ public class ReviewServiceTest extends ServiceTestBase {
         assertEquals("Deadpool", review.getTargetMovie().getTitle());
         assertEquals(2, review.getRating());
         assertEquals("user@gmail.com", review.getAuthor().getUsername());
+        assertNotNull(review.getTimestamp());
+        assertNotNull(review.getId());
 
     }
 
