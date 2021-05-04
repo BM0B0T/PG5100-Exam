@@ -10,6 +10,6 @@ public class RedirectForwardHandler {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String forward() {
-        return "forward:index.xhtml";
+        return "forward:index.jsf";
     }
 }
