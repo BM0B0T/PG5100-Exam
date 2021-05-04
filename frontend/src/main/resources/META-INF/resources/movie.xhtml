@@ -20,14 +20,15 @@
                 <c:set value="#{movieController.selectedMovie}" var="movie"/>
                 <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
                 <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
-                <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
+                <p>Release date: <h:outputText value="#{movie.dateOfRelease}" class="year"/></p>
                 <p>Rating: <h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
 
                 <sec:authenticated>
                     <br/>
                     <h:form prependId="false">
                         <div>
-                            <h:outputLabel id="text-error" value="All fields need to be populated" rendered="${!empty param['error']}"/>
+                            <h:outputLabel id="text-error" value="All fields need to be populated"
+                                           rendered="${!empty param['error']}"/>
                             <h:outputLabel id="user-error" value="Cant make more then 1 review per movie"
                                            rendered="${!empty param['user-error']}"/>
                             <br/>
@@ -52,8 +53,10 @@
                 <br/>
                 <h4>Reviews:</h4>
                 <h:form prependId="false">
-                    <h:commandButton id="sort-rating" value="Sort by Rating" action="#{movieController.filterByRating}" class="btn"/>
-                    <h:commandButton id="sort-time" value="Sort by time" action="#{movieController.filterByTime}" class="btn"/>
+                    <h:commandButton id="sort-rating" value="Sort by Rating" action="#{movieController.filterByRating}"
+                                     class="btn"/>
+                    <h:commandButton id="sort-time" value="Sort by time" action="#{movieController.filterByTime}"
+                                     class="btn"/>
                 </h:form>
 
                 <c:forEach var="review" items="#{movieController.reviews}">

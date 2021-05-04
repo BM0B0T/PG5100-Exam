@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = StubApplication.class,
         webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class sortServiceTest  extends ServiceTestBase{
+public class sortServiceTest extends ServiceTestBase {
     @Autowired
     private MovieService movieService;
     @Autowired

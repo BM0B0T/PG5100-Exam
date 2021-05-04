@@ -86,6 +86,6 @@ public class MovieServiceTest extends ServiceTestBase {
 
         assertEquals(movie.getTitle(), movieList.get(0).getTitle());
         assertEquals(movie.getDirector(), movieList.get(0).getDirector());
-        assertEquals(movie.getYearOfRelease(), movieList.get(0).getYearOfRelease());
+        assertEquals(movie.getDateOfRelease(), movieList.get(0).getDateOfRelease());
     }
 }

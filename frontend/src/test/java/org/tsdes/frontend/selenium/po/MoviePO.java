@@ -36,7 +36,7 @@ public class MoviePO extends LayoutPO {
     public boolean postReview(String reviewText, int rating) {
         int sizeOfReviews = getDriver().findElements(By.className("review")).size();
         setText("review-text", reviewText);
-        getDriver().findElement(By.xpath("/html/body/form[1]/div/select/option["+rating+"]")).click();
+        getDriver().findElement(By.xpath("/html/body/form[1]/div/select/option[" + rating + "]")).click();
         clickAndWait("submit");
         return getDriver().findElements(By.className("review")).size() > sizeOfReviews;
     }

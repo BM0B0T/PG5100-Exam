@@ -14,6 +14,7 @@ public class SortService {
                 .sorted(Comparator.comparing(Review::getRating).reversed())
                 .collect(Collectors.toList());
     }
+
     public List <Review> sortByTimestamp(List <Review> reviewList) {
         return reviewList.stream()
                 .sorted(Comparator.comparing(Review::getTimestamp).reversed())

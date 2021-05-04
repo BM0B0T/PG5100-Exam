@@ -21,13 +21,13 @@ public class MovieService {
     @Autowired
     private ReviewService reviewService;
 
-    public boolean createMovie(String title, String director, Date yearOfRelease) {
+    public boolean createMovie(String title, String director, Date dateOfRelease) {
         if(em.find(Movie.class, title) != null)
             return false;
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setDirector(director);
-        movie.setYearOfRelease(yearOfRelease);
+        movie.setDateOfRelease(dateOfRelease);
         em.persist(movie);
         return true;
     }

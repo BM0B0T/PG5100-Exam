@@ -23,7 +23,7 @@ public class Movie {
     private String director;
 
     @NotNull
-    private Date yearOfRelease;
+    private Date dateOfRelease;
 
 
     public String getTitle() {
@@ -42,11 +42,11 @@ public class Movie {
         this.director = director;
     }
 
-    public Date getYearOfRelease() {
-        return yearOfRelease;
+    public Date getDateOfRelease() {
+        return dateOfRelease;
     }
 
-    public void setYearOfRelease(Date yearOfRelease) {
-        this.yearOfRelease = yearOfRelease;
+    public void setDateOfRelease(Date yearOfRelease) {
+        this.dateOfRelease = yearOfRelease;
     }
 }

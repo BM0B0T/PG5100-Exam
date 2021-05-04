@@ -36,7 +36,8 @@ public class UserService {
         em.persist(user);
         return true;
     }
-    public User getUser(String username){
+
+    public User getUser(String username) {
         return em.find(User.class, username);
     }
 }

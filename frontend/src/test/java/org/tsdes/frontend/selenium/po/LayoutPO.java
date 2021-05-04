@@ -26,6 +26,7 @@ public abstract class LayoutPO extends PageObject {
 
         return po;
     }
+
     public AddMovieOP toAddMovie() {
         clickAndWait("add-movie");
         AddMovieOP po = new AddMovieOP(this);
@@ -40,6 +41,7 @@ public abstract class LayoutPO extends PageObject {
 
         return po;
     }
+
     public MoviePO secondMovie() {
         clickAndWaitXpath("/html/body/div[2]/form/input[2]");
         MoviePO po = new MoviePO(this);

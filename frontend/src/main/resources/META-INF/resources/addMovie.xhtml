@@ -12,7 +12,8 @@
     <ui:define name="content">
         <h1>Add movie</h1>
         <h:form prependId="false">
-            <h:outputLabel id="error" value="need to fill out all the fields and unique title" rendered="${!empty param['error']}"/>
+            <h:outputLabel id="error" value="need to fill out all the fields and unique title"
+                           rendered="${!empty param['error']}"/>
             <br/>
             <h:outputText value="Title: "/>
             <h:inputText id="title" value="#{addMovieController.title}" class="input"/>

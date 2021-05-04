@@ -7,9 +7,9 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.tsdes.backend.entity.Movie;
 import org.tsdes.backend.entity.Review;
 import org.tsdes.backend.entity.User;
-import org.tsdes.backend.service.SortService;
 import org.tsdes.backend.service.MovieService;
 import org.tsdes.backend.service.ReviewService;
+import org.tsdes.backend.service.SortService;
 import org.tsdes.backend.service.UserService;
 
 import javax.inject.Named;
