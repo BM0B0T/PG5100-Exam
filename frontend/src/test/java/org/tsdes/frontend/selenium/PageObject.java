@@ -70,6 +70,19 @@ public abstract class PageObject {
         }catch(Exception ignored){
         }
     }
+    public void clickAndWaitXpath(String xpath) {
+        WebElement element = driver.findElement(By.xpath(xpath));
+        element.click();
+        try{
+            Thread.sleep(200);
+        }catch(Exception ignored){
+        }
+        waitForPageToLoad();
+        try{
+            Thread.sleep(300);
+        }catch(Exception ignored){
+        }
+    }
 
     public String getText(String id) {
         return driver.findElement(By.id(id)).getText();

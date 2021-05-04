@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:sec="http://www.springframework.org/security/tags"
-      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 <ui:composition template="/layout.xhtml">
 
@@ -27,22 +27,24 @@
                     <br/>
                     <h:form prependId="false">
                         <div>
-                            <h:outputLabel value="All felds need to be populated" rendered="${!empty param['error']}"/>
-                            <h:outputLabel value="Cant make more then 1 review per movie" rendered="${!empty param['user-error']}"/>
+                            <h:outputLabel id="text-error" value="All fields need to be populated" rendered="${!empty param['error']}"/>
+                            <h:outputLabel id="user-error" value="Cant make more then 1 review per movie"
+                                           rendered="${!empty param['user-error']}"/>
                             <br/>
                             <h:outputText value="Review text"/>
-                            <h:inputText id="username" value="#{movieController.reviewText}" class="review"/>
+                            <h:inputText id="review-text" value="#{movieController.reviewText}" class="review"/>
                             <br/>
                             <h:outputText value="rating"/>
-                            <h:selectOneMenu value = "#{movieController.reviewRating}">
-                                <f:selectItem itemValue = "1" itemLabel = "1" />
-                                <f:selectItem itemValue = "2" itemLabel = "2" />
-                                <f:selectItem itemValue = "3" itemLabel = "3" />
-                                <f:selectItem itemValue = "4" itemLabel = "4" />
-                                <f:selectItem itemValue = "5" itemLabel = "5" />
+                            <h:selectOneMenu id="rating" value="#{movieController.reviewRating}">
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                <f:selectItem itemValue="5" itemLabel="5"/>
                             </h:selectOneMenu>
                             <br/>
-                            <h:commandButton id="submit" value="Send review" action="#{movieController.sendReview}" class="review_btn"/>
+                            <h:commandButton id="submit" value="Send review" action="#{movieController.sendReview}"
+                                             class="review_btn"/>
                         </div>
                     </h:form>
                 </sec:authenticated>
@@ -50,16 +52,18 @@
                 <br/>
                 <h4>Reviews:</h4>
                 <h:form prependId="false">
-                    <h:commandButton value="Sort by Rating" action="#{movieController.filterByRating}" class="btn"/>
-                    <h:commandButton value="Sort by time" action="#{movieController.filterByTime}" class="btn"/>
+                    <h:commandButton id="sort-rating" value="Sort by Rating" action="#{movieController.filterByRating}" class="btn"/>
+                    <h:commandButton id="sort-time" value="Sort by time" action="#{movieController.filterByTime}" class="btn"/>
                 </h:form>
 
                 <c:forEach var="review" items="#{movieController.reviews}">
-                    <h5>Author: <h:outputText value="#{review.author.firstName} #{review.author.lastName}"/></h5>
-                    <p>Email: <h:outputText value="#{review.author.username}"/></p>
-                    <p>Rating: <h:outputText value="#{review.rating}"/></p>
-                    <p>Review: <h:outputText value="#{review.reviewText}"/></p>
-                    <p>Timestap: <h:outputText value="#{review.timestamp}"/></p>
+                    <div class="review">
+                        <h5>Author: <h:outputText value="#{review.author.firstName} #{review.author.lastName}"/></h5>
+                        <p>Email: <h:outputText value="#{review.author.username}"/></p>
+                        <p>Rating: <h:outputText value="#{review.rating}"/></p>
+                        <p>Review: <h:outputText value="#{review.reviewText}"/></p>
+                        <p>Timestap: <h:outputText value="#{review.timestamp}"/></p>
+                    </div>
                     <br/>
                 </c:forEach>
 

@@ -27,6 +27,20 @@ public abstract class LayoutPO extends PageObject {
         return po;
     }
 
+    public MoviePO firstMovie() {
+        clickAndWaitXpath("/html/body/div[1]/form/input[2]");
+        MoviePO po = new MoviePO(this);
+        assertTrue(po.isOnPage());
+
+        return po;
+    }
+    public MoviePO secondMovie() {
+        clickAndWaitXpath("/html/body/div[2]/form/input[2]");
+        MoviePO po = new MoviePO(this);
+        assertTrue(po.isOnPage());
+        return po;
+    }
+
     public IndexPO doLogout() {
         clickAndWait("logoutId");
         IndexPO po = new IndexPO(this);
@@ -38,5 +52,9 @@ public abstract class LayoutPO extends PageObject {
     public boolean isLoggedIn() {
         return getDriver().findElements(By.id("logoutId")).size() > 0 &&
                 getDriver().findElements((By.id("linkToSignupId"))).isEmpty();
+    }
+
+    public boolean haveMovies() {
+        return getDriver().findElements(By.className("title")).size() >= 2;
     }
 }

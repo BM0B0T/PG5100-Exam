@@ -94,11 +94,6 @@ public class MovieController {
         reviews = filterService.filterByTimestamp(reviews);
     }
 
-    public String refreshMovies() {
-        movies = movieService.getAllMoviesByAvgRating();
-        return "/index.jsf?faces-redirect=true";
-    }
-
     public String refreshReviews() {
         reviews = null;
         getReviews();

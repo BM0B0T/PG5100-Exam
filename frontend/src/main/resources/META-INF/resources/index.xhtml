@@ -19,13 +19,16 @@
 
         <c:forEach var="movie" items="#{movieController.movies}">
 
-            <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
-            <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
-            <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
-            <p>Rating :<h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
-            <h:form prependId="false">
-                <h:commandButton value="Show more detail" action="#{movieController.selectMovie(movie)}" class="btn"/>
-            </h:form>
+            <div>
+                <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
+                <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
+                <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
+                <p>Rating :<h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
+                <h:form prependId="false">
+                    <h:commandButton value="Show more detail" action="#{movieController.selectMovie(movie)}"
+                                     class="btn"/>
+                </h:form>
+            </div>
 
         </c:forEach>
 
