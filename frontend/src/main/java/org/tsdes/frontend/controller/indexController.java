@@ -16,16 +16,27 @@ import java.util.List;
 public class indexController {
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private ReviewService reviewService;
+    @Autowired
+    private FilterService filterService;
 
     private List <Movie> movies = null;
     private List <Review> reviews = null;
-
-    @Autowired
-    private ReviewService reviewService;
     private Movie selectedMovie = null;
 
-    @Autowired
-    private FilterService filterService;
+
+    private String reviewText;
+    private Integer reviewRating;
+
+
+    public String sendReview(){
+        System.out.println(reviewText);
+        System.out.println(reviewRating);
+        return "/movie.jsf?faces-redirect=true";
+    }
+
+
 
     public List <Movie> getMovies() {
         if(movies == null)
@@ -76,4 +87,19 @@ public class indexController {
         return "/index.jsf?faces-redirect=true";
     }
 
+    public String getReviewText() {
+        return reviewText;
+    }
+
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+
+    public Integer getReviewRating() {
+        return reviewRating;
+    }
+
+    public void setReviewRating(Integer reviewRating) {
+        this.reviewRating = reviewRating;
+    }
 }
