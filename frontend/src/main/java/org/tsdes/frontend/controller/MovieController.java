@@ -38,7 +38,6 @@ public class MovieController {
 
     public String sendReview() {
         User user = userService.getUser(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
-        System.out.println(selectedMovie);
         if(reviewText.length() == 0)
             return "/movie.jsf?faces-redirect=true&error=true";
         Review result = reviewService.addReview(selectedMovie, reviewText, reviewRating, user);
@@ -81,13 +80,10 @@ public class MovieController {
     }
 
     public void filterByRating() {
-        System.out.println("rating");
-        System.out.println(reviews.size());
         reviews = sortService.sortByRating(reviews);
     }
 
     public void filterByTime() {
-        System.out.println("time");
         reviews = sortService.sortByTimestamp(reviews);
     }
 

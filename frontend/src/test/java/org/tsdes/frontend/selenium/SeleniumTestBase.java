@@ -231,7 +231,6 @@ public abstract class SeleniumTestBase {
         String data = res.stream().filter(x -> x.contains("Title: test-title")).collect(Collectors.toList()).get(0);
         assertTrue(data.contains("Title: test-title"));
         assertTrue(data.contains("Director: someone"));
-        System.out.println(data);
         assertTrue(data.contains("Release date: 04.05.2021"));
         addMovieOP = home.toAddMovie();
         assertTrue(addMovieOP.isOnPage());
