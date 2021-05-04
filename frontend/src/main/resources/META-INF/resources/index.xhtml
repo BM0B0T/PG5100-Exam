@@ -4,6 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:sec="http://www.springframework.org/security/tags"
 >
 
 <ui:composition template="/layout.xhtml">
@@ -11,6 +12,10 @@
     <ui:define name="title">Home</ui:define>
 
     <ui:define name="content">
+
+        <sec:authenticated>
+            <h1>Welcome <h:outputText value="#{userInfoController.userName}"/></h1>
+        </sec:authenticated>
 
         <c:forEach var="movie" items="#{indexController.movies}">
 

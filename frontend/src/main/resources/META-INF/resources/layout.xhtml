@@ -27,17 +27,15 @@
 <body>
 
     <sec:authenticated>
-        <p><h:outputText value="Welcome home#{userInfoController.userName}"/></p>
-
-
         <a id="logoutId" href="logout?faces-redirect=true" class="btn">Log Out</a>
+        <a href="index.jsf?faces-redirect=true">Home</a>
     </sec:authenticated>
 
 
     <sec:anonymous>
-        <p>You are not logged in</p>
         <a id="linkToLoginId" href="login.jsf?faces-redirect=true" class="btn">Log In</a>
         <a id="linkToSignupId" href="signup.jsf?faces-redirect=true" class="btn" >Sign Up</a>
+        <a href="index.jsf?faces-redirect=true">Home</a>
     </sec:anonymous>
 
     <hr/>

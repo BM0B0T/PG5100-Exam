@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-
+      xmlns:sec="http://www.springframework.org/security/tags"
 >
 <ui:composition template="/layout.xhtml">
 
@@ -20,9 +21,21 @@
                 <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
                 <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
                 <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
+
+                <sec:authenticated>
+                    <br/>
+                    <p><h:outputText value="Welcome home#{userInfoController.userName}"/></p>
+
+                </sec:authenticated>
+
                 <br/>
                 <h4>Reviews:</h4>
-                <c:forEach var="review" items="#{indexController.allReviewsFromMovie}">
+                <h:form prependId="false">
+                    <h:commandButton value="Sort by Rating" action="#{indexController.filterByRating}" class="btn"/>
+                    <h:commandButton value="Sort by time" action="#{indexController.filterByTime}" class="btn"/>
+                </h:form>
+
+                <c:forEach var="review" items="#{indexController.reviews}">
                     <h5>Author: <h:outputText value="#{review.author.firstName} #{review.author.lastName}"/></h5>
                     <p>Email: <h:outputText value="#{review.author.username}"/></p>
                     <p>Rating: <h:outputText value="#{review.rating}"/></p>
