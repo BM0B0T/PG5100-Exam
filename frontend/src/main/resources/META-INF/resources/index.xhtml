@@ -17,14 +17,14 @@
             <h1>Welcome <h:outputText value="#{userInfoController.userName}"/></h1>
         </sec:authenticated>
 
-        <c:forEach var="movie" items="#{indexController.movies}">
+        <c:forEach var="movie" items="#{movieController.movies}">
 
             <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
             <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
             <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
-            <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
+            <p>Rating :<h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
             <h:form prependId="false">
-                <h:commandButton value="Show more detail" action="#{indexController.selectMovie(movie)}" class="btn"/>
+                <h:commandButton value="Show more detail" action="#{movieController.selectMovie(movie)}" class="btn"/>
             </h:form>
 
         </c:forEach>

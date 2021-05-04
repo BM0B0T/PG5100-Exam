@@ -13,15 +13,15 @@
 
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{!indexController.movieSelected}">
+            <c:when test="#{!movieController.movieSelected}">
                 No selected movie, you need to select one <a href="index.jsf?faces-redirect=true">Home</a>
             </c:when>
             <c:otherwise>
-                <c:set value="#{indexController.selectedMovie}" var="movie"/>
+                <c:set value="#{movieController.selectedMovie}" var="movie"/>
                 <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
                 <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
                 <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
-                <p>Rating :<h:outputLabel value="#{indexController.avgRating(movie)}" class="stars"/></p>
+                <p>Rating :<h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
 
                 <sec:authenticated>
                     <br/>
@@ -30,10 +30,10 @@
                             <h:outputLabel value="All felds need to be populated" rendered="${!empty param['error']}"/>
                             <br/>
                             <h:outputText value="Review text"/>
-                            <h:inputText id="username" value="#{indexController.reviewText}" class="review"/>
+                            <h:inputText id="username" value="#{movieController.reviewText}" class="review"/>
                             <br/>
                             <h:outputText value="rating"/>
-                            <h:selectOneMenu value = "#{indexController.reviewRating}">
+                            <h:selectOneMenu value = "#{movieController.reviewRating}">
                                 <f:selectItem itemValue = "1" itemLabel = "1" />
                                 <f:selectItem itemValue = "2" itemLabel = "2" />
                                 <f:selectItem itemValue = "3" itemLabel = "3" />
@@ -41,7 +41,7 @@
                                 <f:selectItem itemValue = "5" itemLabel = "5" />
                             </h:selectOneMenu>
                             <br/>
-                            <h:commandButton id="submit" value="Send review" action="#{indexController.sendReview}" class="review_btn"/>
+                            <h:commandButton id="submit" value="Send review" action="#{movieController.sendReview}" class="review_btn"/>
                         </div>
                     </h:form>
                 </sec:authenticated>
@@ -49,11 +49,11 @@
                 <br/>
                 <h4>Reviews:</h4>
                 <h:form prependId="false">
-                    <h:commandButton value="Sort by Rating" action="#{indexController.filterByRating}" class="btn"/>
-                    <h:commandButton value="Sort by time" action="#{indexController.filterByTime}" class="btn"/>
+                    <h:commandButton value="Sort by Rating" action="#{movieController.filterByRating}" class="btn"/>
+                    <h:commandButton value="Sort by time" action="#{movieController.filterByTime}" class="btn"/>
                 </h:form>
 
-                <c:forEach var="review" items="#{indexController.reviews}">
+                <c:forEach var="review" items="#{movieController.reviews}">
                     <h5>Author: <h:outputText value="#{review.author.firstName} #{review.author.lastName}"/></h5>
                     <p>Email: <h:outputText value="#{review.author.username}"/></p>
                     <p>Rating: <h:outputText value="#{review.rating}"/></p>

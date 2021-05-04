@@ -13,7 +13,7 @@ import java.util.List;
 
 @Named
 @SessionScope
-public class indexController {
+public class MovieController {
     @Autowired
     private MovieService movieService;
     @Autowired
@@ -30,12 +30,11 @@ public class indexController {
     private Integer reviewRating;
 
 
-    public String sendReview(){
+    public String sendReview() {
         System.out.println(reviewText);
         System.out.println(reviewRating);
         return "/movie.jsf?faces-redirect=true";
     }
-
 
 
     public List <Movie> getMovies() {
@@ -68,22 +67,25 @@ public class indexController {
         return reviews;
     }
 
-    public void filterByRating(){
+    public void filterByRating() {
         System.out.println("rating");
         System.out.println(reviews.size());
         reviews = filterService.filterByRating(reviews);
     }
-    public void filterByTime(){
+
+    public void filterByTime() {
         System.out.println("time");
         reviews = filterService.filterByTimestamp(reviews);
     }
-    public String refreshMovies(){
+
+    public String refreshMovies() {
         movies = movieService.getAllMoviesByAvgRating();
         return "/index.jsf?faces-redirect=true";
     }
-    public String refreshReviews(){
-       reviews =null;
-       getReviews();
+
+    public String refreshReviews() {
+        reviews = null;
+        getReviews();
         return "/index.jsf?faces-redirect=true";
     }
 
