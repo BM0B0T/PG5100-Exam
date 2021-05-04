@@ -51,5 +51,10 @@ public class ReviewService {
         return q.getResultList();
     }
 
-
+    public boolean canUserMakeReview(User user, Movie movie) {
+        Query q = em.createQuery("SELECT r FROM Review r WHERE r.targetMovie = ?1 AND r.Author = ?2", Review.class);
+        q.setParameter(1, movie);
+        q.setParameter(2, user);
+        return q.getSingleResult() != null;
+    }
 }
