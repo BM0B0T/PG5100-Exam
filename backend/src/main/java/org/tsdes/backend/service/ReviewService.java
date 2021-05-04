@@ -19,13 +19,9 @@ public class ReviewService {
     @Autowired
     private EntityManager em;
 
-    public Review addReview(String movieTitle, String reviewText, int rating, String author) {
-        Movie movie = em.find(Movie.class, movieTitle);
-        if(movie == null)
-            return null;
-        User user = em.find(User.class, author);
-        if(user == null)
-            return null;
+    public Review addReview(Movie movie, String reviewText, int rating, User user) {
+        if(movie == null || user == null || !canUserMakeReview(user, movie)) return null;
+
         Review review = new Review();
         review.setTargetMovie(movie);
         review.setReviewText(reviewText);
@@ -55,6 +51,6 @@ public class ReviewService {
         Query q = em.createQuery("SELECT r FROM Review r WHERE r.targetMovie = ?1 AND r.Author = ?2", Review.class);
         q.setParameter(1, movie);
         q.setParameter(2, user);
-        return q.getSingleResult() != null;
+        return q.getResultList().isEmpty();
     }
 }

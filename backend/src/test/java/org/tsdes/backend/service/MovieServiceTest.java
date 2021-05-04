@@ -78,7 +78,8 @@ public class MovieServiceTest extends ServiceTestBase {
         assertTrue(movieService.createMovie("Deadpool2", "David Leitch", Date.valueOf("2018-06-12")));
         assertTrue(movieService.createMovie("Deadpool", "Tim Miller", Date.valueOf("2016-02-12")));
         assertTrue(userService.createUser("user@gmail.com", "password1", "test", "tests"));
-        assertNotNull(reviewService.addReview("Deadpool", "its funny", 5, "user@gmail.com"));
+
+        assertNotNull(reviewService.addReview(movieService.getMovieByTitle("Deadpool"), "its funny", 5, userService.getUser("user@gmail.com")));
 
         Movie movie = movieService.getMovieByTitle("Deadpool");
         List <Movie> movieList = movieService.getAllMoviesByAvgRating();
