@@ -67,6 +67,15 @@ public class ReviewServiceTest extends ServiceTestBase {
     }
 
     @Test
+    @DisplayName("a user cant make more then 1 review")
+    void aUserCantMakeMoreThen1Review() {
+        User user1 = createUser("user@gmail.com");
+        assertTrue(movieService.createMovie("Deadpool", "Tim Miller", Date.valueOf("2016-02-12")));
+        assertNotNull(reviewService.addReview(movieService.getMovieByTitle("Deadpool"), "test", 4, user1));
+        assertNull(reviewService.addReview(movieService.getMovieByTitle("Deadpool"), "test", 4, user1));
+    }
+
+    @Test
     @DisplayName("get all reviews by movie")
     void getAllReviewsByMovie() {
         User user1 = createUser("user@gmail.com");
