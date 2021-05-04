@@ -7,7 +7,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import org.tsdes.backend.entity.Movie;
 import org.tsdes.backend.entity.Review;
 import org.tsdes.backend.entity.User;
-import org.tsdes.backend.service.FilterService;
+import org.tsdes.backend.service.SortService;
 import org.tsdes.backend.service.MovieService;
 import org.tsdes.backend.service.ReviewService;
 import org.tsdes.backend.service.UserService;
@@ -23,7 +23,7 @@ public class MovieController {
     @Autowired
     private ReviewService reviewService;
     @Autowired
-    private FilterService filterService;
+    private SortService sortService;
     @Autowired
     private UserService userService;
 
@@ -86,12 +86,12 @@ public class MovieController {
     public void filterByRating() {
         System.out.println("rating");
         System.out.println(reviews.size());
-        reviews = filterService.filterByRating(reviews);
+        reviews = sortService.sortByRating(reviews);
     }
 
     public void filterByTime() {
         System.out.println("time");
-        reviews = filterService.filterByTimestamp(reviews);
+        reviews = sortService.sortByTimestamp(reviews);
     }
 
     public String refreshReviews() {

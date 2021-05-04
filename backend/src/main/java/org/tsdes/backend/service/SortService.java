@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class FilterService {
-    public List <Review> filterByRating(List <Review> reviewList) {
+public class SortService {
+    public List <Review> sortByRating(List <Review> reviewList) {
         return reviewList.stream()
                 .sorted(Comparator.comparing(Review::getRating).reversed())
                 .collect(Collectors.toList());
     }
-    public List <Review> filterByTimestamp(List <Review> reviewList) {
+    public List <Review> sortByTimestamp(List <Review> reviewList) {
         return reviewList.stream()
                 .sorted(Comparator.comparing(Review::getTimestamp).reversed())
                 .collect(Collectors.toList());

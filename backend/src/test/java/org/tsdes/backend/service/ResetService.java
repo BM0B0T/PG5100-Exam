@@ -26,9 +26,6 @@ public class ResetService {
         deleteEntities(User.class);
         deleteEntities(Movie.class);
     }
-    public void resetReviews() {
-        deleteEntities(Review.class);
-    }
 
     private void deleteEntities(Class <?> entity) {
 
