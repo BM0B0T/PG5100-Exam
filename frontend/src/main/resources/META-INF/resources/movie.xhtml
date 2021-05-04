@@ -28,6 +28,7 @@
                     <h:form prependId="false">
                         <div>
                             <h:outputLabel value="All felds need to be populated" rendered="${!empty param['error']}"/>
+                            <h:outputLabel value="Cant make more then 1 review per movie" rendered="${!empty param['user-error']}"/>
                             <br/>
                             <h:outputText value="Review text"/>
                             <h:inputText id="username" value="#{movieController.reviewText}" class="review"/>

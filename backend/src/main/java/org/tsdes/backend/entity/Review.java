@@ -13,6 +13,7 @@ public class Review {
     private Long id;
 
     @ManyToOne
+    @NotNull
     private Movie targetMovie;
 
     @Size(min = 1, max = 4096)
@@ -20,6 +21,7 @@ public class Review {
     private String ReviewText;
 
     @ManyToOne
+    @NotNull
     private User Author;
 
     @Min(1)
@@ -27,7 +29,6 @@ public class Review {
     private int rating;
 
     @NotNull
-    //@Temporal(TemporalType.TIMESTAMP)
     private Timestamp timestamp;
 
     public Long getId() {

@@ -1,12 +1,16 @@
 package org.tsdes.frontend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.context.annotation.SessionScope;
 import org.tsdes.backend.entity.Movie;
 import org.tsdes.backend.entity.Review;
+import org.tsdes.backend.entity.User;
 import org.tsdes.backend.service.FilterService;
 import org.tsdes.backend.service.MovieService;
 import org.tsdes.backend.service.ReviewService;
+import org.tsdes.backend.service.UserService;
 
 import javax.inject.Named;
 import java.util.List;
@@ -20,6 +24,9 @@ public class MovieController {
     private ReviewService reviewService;
     @Autowired
     private FilterService filterService;
+    @Autowired
+    private UserService userService;
+
 
     private List <Movie> movies = null;
     private List <Review> reviews = null;
@@ -31,8 +38,16 @@ public class MovieController {
 
 
     public String sendReview() {
-        System.out.println(reviewText);
-        System.out.println(reviewRating);
+        User user = userService.getUser(((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+        System.out.println(selectedMovie);
+        if(reviewText.length() == 0)
+            return "/movie.jsf?faces-redirect=true&error=true";
+        Review result = reviewService.addReview(selectedMovie, reviewText, reviewRating, user);
+        reviewText = null;
+        reviewRating = null;
+        if(result == null)
+            return "/movie.jsf?faces-redirect=true&user-error=true";
+        refreshReviews();
         return "/movie.jsf?faces-redirect=true";
     }
 
@@ -49,6 +64,7 @@ public class MovieController {
 
     public String selectMovie(Movie movie) {
         selectedMovie = movie;
+        refreshReviews();
         return "/movie.jsf?faces-redirect=true";
     }
 
