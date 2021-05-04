@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.tsdes.backend.entity.Movie;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
@@ -35,6 +36,9 @@ public class MovieService {
         Movie movie = em.find(Movie.class, title);
         if(movie == null)
             return false;
+        Query q = em.createQuery("delete from Review r where r.targetMovie = ?1");
+        q.setParameter(1, movie);
+        q.executeUpdate();
         em.remove(movie);
         return true;
     }

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html   xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:sec="http://www.springframework.org/security/tags"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 
 <head>
@@ -26,21 +25,23 @@
 
 <body>
 
-    <sec:authenticated>
-        <a id="logoutId" href="logout?faces-redirect=true" class="btn">Log Out</a>
-        <a href="index.jsf?faces-redirect=true">Home</a>
-    </sec:authenticated>
+<sec:authenticated>
+    <a id="logoutId" href="logout?faces-redirect=true" class="btn">Log Out</a>
+    <a href="index.jsf?faces-redirect=true">Home</a>
+    <a href="addMovie.jsf?faces-redirect=true">Add movie</a>
+
+</sec:authenticated>
 
 
-    <sec:anonymous>
-        <a id="linkToLoginId" href="login.jsf?faces-redirect=true" class="btn">Log In</a>
-        <a id="linkToSignupId" href="signup.jsf?faces-redirect=true" class="btn" >Sign Up</a>
-        <a href="index.jsf?faces-redirect=true">Home</a>
-    </sec:anonymous>
+<sec:anonymous>
+    <a id="linkToLoginId" href="login.jsf?faces-redirect=true" class="btn">Log In</a>
+    <a id="linkToSignupId" href="signup.jsf?faces-redirect=true" class="btn">Sign Up</a>
+    <a href="index.jsf?faces-redirect=true">Home</a>
+</sec:anonymous>
 
-    <hr/>
+<hr/>
 
-    <ui:insert name="content" />
+<ui:insert name="content"/>
 
 
 </body>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+
+<ui:composition template="/layout.xhtml">
+
+    <ui:define name="title">Add movie</ui:define>
+
+    <ui:define name="content">
+        <h1>Add movie</h1>
+        <h:form prependId="false">
+            <h:outputLabel id="error" value="need to fill out all the fields and unique title" rendered="${!empty param['error']}"/>
+            <br/>
+            <h:outputText value="Title: "/>
+            <h:inputText id="title" value="#{addMovieController.title}" class="input"/>
+            <br/>
+            <h:outputText value="Author: "/>
+            <h:inputText id="author" value="#{addMovieController.director}" class="input"/>
+            <br/>
+            <h:outputText value="Date (DD-MM-YYYY): "/>
+            <h:inputText id="date" value="#{addMovieController.releaseDate}" class="input"/>
+            <br/>
+            <h:commandButton id="submit" value="Add movie" action="#{addMovieController.addMovie}" class="btn"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

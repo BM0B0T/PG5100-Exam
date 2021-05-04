@@ -28,7 +28,6 @@ public class MovieController {
     private UserService userService;
 
 
-    private List <Movie> movies = null;
     private List <Review> reviews = null;
     private Movie selectedMovie = null;
 
@@ -53,9 +52,7 @@ public class MovieController {
 
 
     public List <Movie> getMovies() {
-        if(movies == null)
-            movies = movieService.getAllMoviesByAvgRating();
-        return movies;
+        return movieService.getAllMoviesByAvgRating();
     }
 
     public boolean isMovieSelected() {
@@ -94,10 +91,9 @@ public class MovieController {
         reviews = sortService.sortByTimestamp(reviews);
     }
 
-    public String refreshReviews() {
+    public void refreshReviews() {
         reviews = null;
         getReviews();
-        return "/index.jsf?faces-redirect=true";
     }
 
     public String getReviewText() {
