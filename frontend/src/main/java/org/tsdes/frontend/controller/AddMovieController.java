@@ -22,14 +22,12 @@ public class AddMovieController {
 
 
     public String addMovie() {
-        System.out.println("test1");
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate = LocalDate.parse(releaseDate, dateTimeFormatter);
-        if(localDate == null){
-            return "/addMovie.jsf?faces-redirect=true&error=true";
-        }
-        System.out.println("test 2");
-        boolean success = movieService.createMovie(title.trim(), director, Date.valueOf(localDate));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(releaseDate, formatter);
+
+        boolean success = movieService.createMovie(title.trim(), director, Date.valueOf(date.plusDays(1)));
+
         if(success)
             return "/index.jsf?faces-redirect=true";
         return "/addMovie.jsf?faces-redirect=true&error=true";

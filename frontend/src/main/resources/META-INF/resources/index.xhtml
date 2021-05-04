@@ -5,6 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://java.sun.com/jsf/core"
 >
 
 <ui:composition template="/layout.xhtml">
@@ -19,10 +20,13 @@
 
         <c:forEach var="movie" items="#{movieController.movies}">
 
-            <div>
+            <div class="movie">
                 <h3>Title: <h:outputLabel value="#{movie.title}" class="title"/></h3>
                 <p>Director: <h:outputText value="#{movie.director}" class="director"/></p>
-                <p>Release year: <h:outputText value="#{movie.yearOfRelease}" class="year"/></p>
+                <p>Release date: <h:outputText value="#{movie.yearOfRelease}" class="year">
+                    <f:convertDateTime pattern="dd.MM.yyyy"/>
+                </h:outputText>
+                </p>
                 <p>Rating :<h:outputLabel value="#{movieController.avgRating(movie)}" class="stars"/></p>
                 <h:form prependId="false">
                     <h:commandButton value="Show more detail" action="#{movieController.selectMovie(movie)}"

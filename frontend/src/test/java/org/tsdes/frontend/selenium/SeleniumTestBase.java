@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.tsdes.frontend.selenium.po.AddMovieOP;
 import org.tsdes.frontend.selenium.po.IndexPO;
 import org.tsdes.frontend.selenium.po.MoviePO;
 import org.tsdes.frontend.selenium.po.SignUpPO;
@@ -123,6 +124,7 @@ public abstract class SeleniumTestBase {
         assertTrue(home.isOnPage());
         assertTrue(home.haveMovies());
     }
+
     @Test
     @DisplayName("test cant make review without review text")
     void testCantMakeReviewWithoutReviewText() {
@@ -138,11 +140,11 @@ public abstract class SeleniumTestBase {
         MoviePO moviePO = goToFirstMovie();
         assertTrue(moviePO.isOnPage());
         assertTrue(moviePO.canPostReview());
-        moviePO.postReview("",1);
-        assertEquals("All fields need to be populated",moviePO.getText("text-error"));
-        moviePO.postReview("its bad",1);
-        moviePO.postReview("its bad",1);
-        assertEquals("Cant make more then 1 review per movie",moviePO.getText("user-error"));
+        moviePO.postReview("", 1);
+        assertEquals("All fields need to be populated", moviePO.getText("text-error"));
+        moviePO.postReview("its bad", 1);
+        moviePO.postReview("its bad", 1);
+        assertEquals("Cant make more then 1 review per movie", moviePO.getText("user-error"));
     }
 
 
@@ -192,8 +194,8 @@ public abstract class SeleniumTestBase {
         List <String> preRes = getDriver().findElements(By.className("review")).stream().map(WebElement::getText).collect(Collectors.toList());
 
         createNewReviewWithANewUser("testing a review 1", 5);
-       createNewReviewWithANewUser("testing a review 2", 2);
-       createNewReviewWithANewUser("testing a review 3", 1);
+        createNewReviewWithANewUser("testing a review 2", 2);
+        createNewReviewWithANewUser("testing a review 3", 1);
 
         MoviePO moviePO = goToFirstMovie();
 
@@ -210,6 +212,34 @@ public abstract class SeleniumTestBase {
         assertTrue(res.get(0).contains("Rating: 1"));
         assertTrue(res.get(1).contains("Rating: 2"));
         assertTrue(res.get(2).contains("Rating: 5"));
+    }
+
+    @Test
+    @DisplayName("add new movie")
+    void addNewMovie() {
+        assertFalse(home.isLoggedIn());
+        String username = getUniqueId();
+        String password = "password1";
+        String firstName = "test";
+        String lastName = "test";
+        home = createNewUser(username, password, firstName, lastName);
+        assertTrue(home.isLoggedIn());
+        AddMovieOP addMovieOP = home.toAddMovie();
+        assertTrue(addMovieOP.isOnPage());
+        home = addMovieOP.createNewMovie("test-title", "someone", "04-05-2021");
+        List <String> res = getDriver().findElements(By.className("movie")).stream().map(WebElement::getText).collect(Collectors.toList());
+        String data = res.stream().filter(x -> x.contains("Title: test-title")).collect(Collectors.toList()).get(0);
+        assertTrue(data.contains("Title: test-title"));
+        assertTrue(data.contains("Director: someone"));
+        System.out.println(data);
+        assertTrue(data.contains("Release date: 04.05.2021"));
+        addMovieOP = home.toAddMovie();
+        assertTrue(addMovieOP.isOnPage());
+        home = addMovieOP.createNewMovie("test-title", "someone", "04-05-2021");
+        assertNull(home);
+        assertTrue(addMovieOP.isOnPage());
+        assertEquals("need to fill out all the fields and unique title", addMovieOP.getDriver().findElement(By.id("error")).getText());
+
     }
 
 
