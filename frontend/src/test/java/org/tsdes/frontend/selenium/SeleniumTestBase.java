@@ -181,7 +181,7 @@ public abstract class SeleniumTestBase {
     void testStars() {
         assertTrue(home.isOnPage());
         String stars = getDriver().findElement(By.xpath("/html/body/div[1]/p[3]/label")).getText();
-        createNewReviewWithANewUser("testing a review", 5);
+        createNewReviewWithANewUser("testing a review", 1);
         assertTrue(home.isOnPage());
         String newStars = getDriver().findElement(By.xpath("/html/body/div[1]/p[3]/label")).getText();
         assertNotEquals(stars, newStars);
