@@ -16,7 +16,7 @@
         <h2>sign up</h2>
         <h:form prependId="false">
             <div>
-                <h:outputLabel value="User and/or password are wrong." rendered="${!empty param['error']}"/>
+                <h:outputLabel value="User and/or password are wrong." id="error" rendered="${!empty param['error']}"/>
                 <br/>
                 <h:outputText value="Email: "/>
                 <h:inputText id="username" value="#{signUpController.username}" class="login"/>
